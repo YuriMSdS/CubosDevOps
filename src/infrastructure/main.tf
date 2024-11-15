@@ -11,16 +11,15 @@ resource "docker_container" "frontend" {
     external = 8080
   }
 
-  volumes = [
-    {
-      host_path      = "${path.module}/../app/front/index.html"
-      container_path = "/usr/share/nginx/html/index.html"
-    },
-    {
-      host_path      = "${path.module}/../app/back/script.js"
-      container_path = "/usr/src/app/script.js"
-    }
-  ]
+  volumes {
+    host_path      = "${path.module}/../app/front/index.html"
+    container_path = "/usr/share/nginx/html/index.html"
+  }
+
+  volumes {
+    host_path      = "${path.module}/../app/back/script.js"
+    container_path = "/usr/src/app/script.js"
+  }
 
   networks_advanced {
     name = docker_network.private_network.name
@@ -76,12 +75,10 @@ resource "docker_container" "postgre" {
   name  = "db"
   image = docker_image.postgre.image_id
 
-  volumes = [
-    {
-      host_path      = "${path.module}/../app/sql/data"
-      container_path = "/bitnami/postgresql/data"
-    }
-  ]
+   volumes {
+    host_path      = "${path.module}/../app/sql/data"
+    container_path = "/bitnami/postgresql/data"
+  }
 
   env = [
     "POSTGRESQL_DATABASE=db",
