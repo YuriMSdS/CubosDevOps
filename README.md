@@ -14,7 +14,7 @@ CubosDevOps/
 │                ├──node_modules                 //Ignorado no controle de versão             
 │                ├── script.js
 │                ├── package.json
-│                └── package-lock.json
+│                └── package-lock.json           //Ignorado no controle de versão
 │           ├──front/
 │                └── index.html
 │           ├──sql/
